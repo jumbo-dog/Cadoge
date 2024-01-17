@@ -1,3 +1,3 @@
-#include <iostream>
+// #include "../headers/ChessPiece.hh"
 
-int main() { std::cout << "Hello world" << std::endl; }
+int main() {}
