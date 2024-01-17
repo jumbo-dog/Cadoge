@@ -2,6 +2,10 @@
 
 //------------------------------------------------------------------------------
 
+#include <cstdint>
+
+//------------------------------------------------------------------------------
+
 enum PieceType {
     Pawn   = 1,
     Knight = 2,
@@ -10,24 +14,36 @@ enum PieceType {
     Queen  = 5,
     King   = 6,
 
-    ERR = 0,
+    EMPTY = -1,
 };
 
 struct Position {
-        int x;
-        int y;
+        uint8_t x;
+        uint8_t y;
 };
+
+//------------------------------------------------------------------------------
+
+PieceType GetType(Position pos);
+bool Capture(Position pos);
 
 //------------------------------------------------------------------------------
 
 class ChessPiece {
     public:
-        PieceType GetTypeOfPiece(ChessPiece piece);
-        PieceType GetTypeOfPiece(Position pos);
+        ChessPiece(Position pos, PieceType type);
+        ~ChessPiece();
+
+        bool DisplayPiece();
+        bool Capture();
+
+        PieceType GetType();
+        Position GetPos();
 
     private:
         Position pos;
         PieceType type;
+        bool isCaptured = false;
 };
 
 //------------------------------------------------------------------------------
