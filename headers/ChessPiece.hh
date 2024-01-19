@@ -2,19 +2,20 @@
 
 //------------------------------------------------------------------------------
 
+#include <array>
 #include <cstdint>
 
 //------------------------------------------------------------------------------
 
 enum PieceType {
-    Pawn   = 1,
-    Knight = 2,
-    Bishop = 3,
-    Rook   = 4,
-    Queen  = 5,
-    King   = 6,
+    Pawn = 1,
+    Knight,
+    Bishop,
+    Rook,
+    Queen,
+    King,
 
-    EMPTY = -1,
+    EMPTY = 0,
 };
 
 struct Position {
@@ -31,10 +32,10 @@ bool Capture(Position pos);
 
 class ChessPiece {
     public:
-        ChessPiece(Position pos, PieceType type);
+        ChessPiece(PieceType type);
         ~ChessPiece();
 
-        bool DisplayPiece();
+        bool Display();
         bool Capture();
 
         PieceType GetType();
