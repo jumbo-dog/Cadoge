@@ -1,15 +1,28 @@
 #include "../headers/Board.hh"
 
-#include <array>
+#include "../headers/utils.hh"
 
-Board::Board(std::array<std::array<ChessPiece, 8>, 8> param_board)
-    : boardInfo(param_board){};
+//------------------------------------------------------------------------------
 
-std::array<std::array<ChessPiece, 8>, 8> Board::GetBoardInfo() {
-    return boardInfo;
+namespace CP = ChessPiece;
+
+//------------------------------------------------------------------------------
+_2DArray<CP::PieceType, BOARD_ROW_SIZE, BOARD_COL_SIZE> Board::boardInstance{};
+
+//------------------------------------------------------------------------------
+
+Board::Board(){};
+Board::~Board(){};
+
+//------------------------------------------------------------------------------
+
+_2DArray<CP::PieceType, BOARD_ROW_SIZE, BOARD_COL_SIZE> Board::GetBoardInfo() {
+    return boardInstance;
 }
 
-bool Board::rl_DisplayBoard() {
-    // needs to be created with raylib
-    return false;
+void Board::ChageBoardInfo(
+    _2DArray<CP::PieceType, BOARD_ROW_SIZE, BOARD_COL_SIZE> newBoard) {
+    boardInstance = newBoard;
 }
+
+//------------------------------------------------------------------------------

@@ -1,21 +1,36 @@
 #include "../headers/ChessPiece.hh"
 
-//------------------------------------------------------------------------------
-
-ChessPiece::ChessPiece(PieceType param_type) : type(param_type){};
-
-ChessPiece::~ChessPiece() {}
+#include "../headers/Board.hh"
+#include "../headers/utils.hh"
 
 //------------------------------------------------------------------------------
 
-bool ChessPiece::Display() { return false; }
+ChessPiece::PieceType ChessPiece::GetType(Position pos) {
+    return PieceType::EMPTY;
+}
 
-bool ChessPiece::Capture() { return false; }
-bool Capture(Position pos) { return false; };
+void ChessPiece::ChangeType(PieceType newType,
+                            Position pos,
+                            const Board *board) {
+    Board _board = *board;
+    _2DArray<CP::PieceType, BOARD_ROW_SIZE, BOARD_COL_SIZE> boardInfo =
+        _board.GetBoardInfo();
 
-PieceType ChessPiece::GetType() { return type; }
-PieceType GetType(Position pos) { return EMPTY; }  // Just a placeholder
+    boardInfo[pos.x][pos.y] = newType;
+}
 
-Position ChessPiece::GetPos() { return pos; };
+bool ChessPiece::GetCapture(Position pos, Board *board) { return false; };
+
+bool ChessPiece::MoveTo(const Position piecePos,
+                        const Position newPos,
+                        Board *board) {
+    return false;
+}
+
+std::vector<ChessPiece::Position> ChessPiece::GetAllMovements(
+    Position prevPos, const Board *board) {
+    std::vector<CP::Position> movements{};
+    return movements;
+}
 
 //------------------------------------------------------------------------------

@@ -2,18 +2,32 @@
 
 //------------------------------------------------------------------------------
 
-#include <array>
 #include <cstdint>
+
+#include "./Board.hh"
+#include "./utils.hh"
+
+class Board;  // For some reason I need to have this so the compiler doesn't
+              // complain even tho I included it
 
 //------------------------------------------------------------------------------
 
-enum PieceType {
-    Pawn = 1,
-    Knight,
-    Bishop,
-    Rook,
-    Queen,
-    King,
+namespace ChessPiece {
+
+enum class PieceType {
+    W_Pawn = 1,
+    W_Knight,
+    W_Bishop,
+    W_Rook,
+    W_Queen,
+    W_King,
+
+    B_Pawn = 7,
+    B_Knight,
+    B_Bishop,
+    B_Rook,
+    B_Queen,
+    B_King,
 
     EMPTY = 0,
 };
@@ -26,25 +40,13 @@ struct Position {
 //------------------------------------------------------------------------------
 
 PieceType GetType(Position pos);
-bool Capture(Position pos);
 
-//------------------------------------------------------------------------------
+bool GetCapture(Position pos, Board *board);
+bool MoveTo(Position prevPos, Position newPos, Board *board);
 
-class ChessPiece {
-    public:
-        ChessPiece(PieceType type);
-        ~ChessPiece();
+void ChangeType(PieceType newType, Position pos, const Board *board);
 
-        bool Display();
-        bool Capture();
+std::vector<Position> GetAllMovements(Position prevPos, const Board *board);
 
-        PieceType GetType();
-        Position GetPos();
-
-    private:
-        Position pos;
-        PieceType type;
-        bool isCaptured = false;
-};
-
+}  // namespace ChessPiece
 //------------------------------------------------------------------------------
