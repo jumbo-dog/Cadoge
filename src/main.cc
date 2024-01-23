@@ -1,1 +1,6 @@
-int main(int argc, char *argv[]) {}
+#include "../headers/Board.hh"
+
+int main() {
+    Board board;
+    board.rl_Init();
+}

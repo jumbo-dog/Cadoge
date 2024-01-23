@@ -1,2 +1,11 @@
 cadoge
 *.o
+
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+./src/cmake_install.cmake
+*.a
+Makefile
+
+build/
