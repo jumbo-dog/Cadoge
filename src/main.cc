@@ -1,3 +1,6 @@
-// #include "../headers/ChessPiece.hh"
+#include "../headers/Board.hh"
 
-int main() {}
+int main() {
+    Board board;
+    board.rl_Init();
+}
